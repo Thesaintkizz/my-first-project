@@ -5,97 +5,171 @@
     <title>Login - Legendary Leaders</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        /* NAVIGATION BAR */
+        nav {
+            background:#222;
+            padding:15px;
+            text-align:center;
+        }
+        nav a {
+            color:#fff;
+            margin:0 15px;
+            text-decoration:none;
+            font-weight:500;
+            transition:0.3s;
+        }
+        nav a:hover {
+            color:#ffd700;
+            text-decoration:underline;
+        }
+        nav a.login-link {
+            color:#ffd700;
+            font-weight:bold;
+        }
+
+        /* BODY AND BACKGROUND */
         body {
             font-family: 'Poppins', sans-serif;
-            background: #f4f6f8;
+            background: url('images/login-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            color: #fff;
         }
 
+        /* LOGIN CONTAINER */
         .login-container {
-            background: white;
+            background: rgba(0,0,0,0.85);
             padding: 40px 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-radius: 15px;
             text-align: center;
-            width: 350px;
+            width: 380px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.7);
         }
 
+        /* LOGO */
+        .login-container img.logo {
+            width: 100px;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+
+        /* TITLE */
         .login-container h2 {
-            margin-bottom: 25px;
-            color: #222;
+            margin-bottom: 30px;
+            font-weight: 600;
+            color: #ffd700;
         }
 
-        input[type="text"], input[type="password"] {
+        /* INPUT FIELDS */
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
             width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 6px;
-            border: 1px solid #ccc;
+            padding: 14px;
+            margin: 12px 0;
+            border-radius: 8px;
+            border: none;
+            outline: none;
             font-size: 16px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            transition: 0.3s;
+        }
+        .login-container input[type="text"]:focus,
+        .login-container input[type="password"]:focus {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.02);
         }
 
+        /* BUTTON */
         button {
             width: 100%;
-            padding: 12px;
-            margin-top: 15px;
-            background: #222;
-            color: white;
-            border: none;
-            border-radius: 6px;
+            padding: 14px;
+            margin-top: 20px;
+            background: #ffd700;
+            color: #000;
+            font-weight: 600;
             font-size: 16px;
+            border: none;
+            border-radius: 8px;
             cursor: pointer;
+            transition: 0.3s;
         }
-
         button:hover {
-            background: #555;
+            background: #e6c200;
+            transform: scale(1.05);
         }
 
+        /* ERROR MESSAGE */
         .error {
-            color: red;
-            margin-top: 10px;
+            color: #ff6b6b;
+            margin-top: 12px;
             font-size: 14px;
         }
 
-        a {
+        /* BACK LINK */
+        a.back-home {
             display: block;
-            margin-top: 15px;
+            margin-top: 18px;
             text-decoration: none;
-            color: #222;
+            color: #ffd700;
+            font-size: 14px;
+        }
+        a.back-home:hover {
+            color: #fff;
         }
     </style>
 </head>
 <body>
+
+    <!-- NAVIGATION MENU -->
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="leaders.html">Leaders</a>
+        <a href="login.html" class="login-link">Login</a>
+    </nav>
+
+    <!-- LOGIN FORM -->
     <div class="login-container">
-        <h2>Login</h2>
+        <img src="images/logo.png" alt="Logo" class="logo">
+        <h2>Legendary Leaders Login</h2>
+
         <input type="text" id="username" placeholder="Username">
         <input type="password" id="password" placeholder="Password">
         <button onclick="login()">Login</button>
+
         <div class="error" id="errorMsg"></div>
-        <a href="index.html">Back to Home</a>
+        <a href="index.html" class="back-home">Back to Home</a>
     </div>
 
+    <!-- LOGIN SCRIPT -->
     <script>
         function login() {
-            // Set your username and password
-            const correctUsername = "admin";
-            const correctPassword = "12345";
+            const correctUsername = "admin"; // change as needed
+            const correctPassword = "12345"; // change as needed
 
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value.trim();
             const errorMsg = document.getElementById("errorMsg");
 
             if(username === correctUsername && password === correctPassword){
-                alert("Login successful!");
-                // Redirect to a page, e.g., leaders.html
-                window.location.href = "leaders.html";
+                errorMsg.style.color = "#00ff99";
+                errorMsg.textContent = "Login successful! Redirecting...";
+
+                setTimeout(() => {
+                    window.location.href = "leaders.html"; // page after login
+                }, 1000);
             } else {
+                errorMsg.style.color = "#ff6b6b";
                 errorMsg.textContent = "Incorrect username or password!";
             }
         }
     </script>
+
 </body>
 </html>
